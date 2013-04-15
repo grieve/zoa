@@ -15,10 +15,10 @@ define(
 					self.x = x;
 					self.y = y;
 					self.generateShape();
-					self.angularVelocity = Math.random() - 0.5;
+					self.angularVelocity = (Math.random() - 0.5) * 5;
 					self.velocity = [
-						(Math.random() * 10) - 5,
-						(Math.random() * 10) - 5
+						(Math.random() - 0.5) * 100,
+						(Math.random() - 0.5) * 100
 					];
 				},
 			generateShape: function()

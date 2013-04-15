@@ -54,9 +54,10 @@ define(
             update: function(elapsed)
                 {
                     var self = this;
-                    self.rotation += 0.004 * elapsed * self.angularVelocity;
-                    self.x += self.velocity[0];
-                    self.y += self.velocity[1];
+                    var seconds = elapsed / 1000;
+                    self.rotation += seconds * self.angularVelocity;
+                    self.x += self.velocity[0] * seconds;
+                    self.y += self.velocity[1] * seconds;
                 }
         });
         return Entity;
