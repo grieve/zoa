@@ -17,10 +17,10 @@ define(
     )
     {
         var App = Engine.derive({
-            new: function()
+            init: function override()
                 {
                     var self = this;
-                    arguments.callee.super.new(800, 600);
+                    override.super.call(self, 800, 600);
                     Radio('preloaderStateChanged').subscribe([self.onPreloadStateChange, self]);
                     self.preload(
                         [
@@ -28,21 +28,21 @@ define(
                         ]
                     );
                 },
-                onPreloadStateChange: function(state, percentage)
+            onPreloadStateChange: function(state, percentage)
+                {
+                    var self = this;
+                    console.log("loading... " + percentage + "%");
+                    if (state)
                     {
-                        var self = this;
-                        console.log("loading... " + percentage + "%");
-                        if (state)
-                        {
-                            self.activeScene = new Scene();
-                            var ship = new Spaceship(400 - 16, 300 - 16);
-                            self.activeScene.add(ship);
-                            var asteroid = new Asteroid(100, 200, 200);
-                            self.activeScene.add(asteroid);
-                            self.start();
-                        }
+                        self.activeScene = new Scene();
+                        var ship = new Spaceship(400 - 16, 300 - 16);
+                        self.activeScene.add(ship);
+                        var asteroid = new Asteroid(100, 200, 200);
+                        self.activeScene.add(asteroid);
+                        self.start();
                     }
+                }
         });
-        return App; 
+        return App;
     }
 );

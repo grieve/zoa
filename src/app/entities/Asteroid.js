@@ -7,11 +7,11 @@ define(
 	)
 	{
 		var Asteroid = Entity.derive({
-			new: function(s, x, y)
+			init: function override(s, x, y)
 				{
 					var self = this;
 					self.size = s / 2;
-					arguments.callee.super.new.call(self, s*1.2, s*1.2);
+					override.super.call(self, s*1.2, s*1.2);
 					self.x = x;
 					self.y = y;
 					self.generateShape();
@@ -21,15 +21,13 @@ define(
 						(Math.random() - 0.5) * 100
 					];
 				},
-			generateShape: function()
+			generateShape: function override()
 				{
 					var self = this;
 					var sides = 20;
 					var randRange = self.size / 3;
 					var center = self.width / 2;
-
 					var ctx = self.graphic.getContext('2d');
-
 					ctx.beginPath();
 					ctx.moveTo(
 						center + (self.size * Math.cos(0)) + (Math.random() - 0.5) * randRange,

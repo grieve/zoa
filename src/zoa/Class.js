@@ -4,7 +4,7 @@ define(
 	{
 		var Class = function(){};
 
-		Class.prototype.new = function(){};
+		Class.prototype.init = function(){};
 
 		Class.derive = function(def)
 		{
@@ -12,7 +12,7 @@ define(
 			{
 				if (arguments[0] !== Class)
 				{
-					this.new.apply(this, arguments);
+					this.init.apply(this, arguments);
 				}
 			};
 
@@ -21,13 +21,13 @@ define(
 
 			for (var n in def)
 			{
-				var item = def[n];                      
-				if (item instanceof Function) item.super = superClass;
+				var item = def[n];
+				if (item instanceof Function) item.super = superClass[n];
 				proto[n] = item;
 			}
 
-			classDef.prototype = proto;  
-			classDef.derive = this.derive;      
+			classDef.prototype = proto;
+			classDef.derive = this.derive;
 			return classDef;
 		};
 		return Class;

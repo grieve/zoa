@@ -1,13 +1,15 @@
 define(
     [
-        'zoa/Class'
+        'zoa/Class',
+        'radio'
     ],
     function(
-        Class
+        Class,
+        Radio
     )
     {
         var Scene = Class.derive({
-            new: function()
+            init: function()
                 {
                     var self = this;
                     self.children = [];
@@ -37,6 +39,7 @@ define(
                             return;
                     }
                     self.children.push(child);
+                    Radio('registerEntity').broadcast('render', child);
                 }
         });
         return Scene;

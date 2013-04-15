@@ -7,10 +7,10 @@ define(
 	)
 	{
 		var Spaceship = Entity.derive({
-			new: function(x, y)
+			init: function override(x, y)
 			{
 				var self = this;
-				arguments.callee.super.new.call(self, 32, 32, 'assets/gfx/ship.png');
+				override.super.call(self, 32, 32, 'assets/gfx/ship.png');
 				self.x = x;
 				self.y = y;
 			},
@@ -35,7 +35,7 @@ define(
 							self.y += 10;
 							break;
 					}
-				}
+				};
 			}
 		});
 		return Spaceship;

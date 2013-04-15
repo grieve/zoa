@@ -7,7 +7,7 @@ define(
     )
     {
         var Entity = Class.derive({
-            new: function(width, height, graphic)
+            init: function(width, height, graphic)
                 {
                     var self = this;
                     self.width = width;
@@ -53,6 +53,11 @@ define(
                 },
             update: function(elapsed)
                 {
+                    if (elapsed > 10000)
+                    {
+                        //something seriously wrong skip
+                        return;
+                    }
                     var self = this;
                     var seconds = elapsed / 1000;
                     self.rotation += seconds * self.angularVelocity;
