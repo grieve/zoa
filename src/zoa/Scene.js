@@ -17,7 +17,7 @@ define(
             update: function(elapsed)
                 {
                     var self = this;
-                    for (var idx in self.children)
+                    for (var idx = 0; idx < self.children.length; idx++)
                     {
                         self.children[idx].update(elapsed);
                     }
@@ -25,7 +25,7 @@ define(
             render: function(target)
                 {
                     var self = this;
-                    for (var idx in self.children)
+                    for (var idx = 0; idx < self.children.length; idx++)
                     {
                         self.children[idx].render(target);
                     }
@@ -33,13 +33,30 @@ define(
             add: function(child)
                 {
                     var self = this;
-                    for (var idx in self.children)
+                    for (var idx = 0; idx < self.children.length; idx++)
                     {
                         if (child == self.children[idx])
                             return;
                     }
                     self.children.push(child);
-                    Radio('registerEntity').broadcast('render', child);
+                },
+            suspend: function()
+                {
+                    var self = this;
+                    for (var idx = 0; idx < self.children.length; idx++)
+                    {
+                        Radio('deregisterEntity').broadcast('all', self.children[idx]);
+                    }
+                },
+            destroy: function()
+                {
+                    var self = this;
+                    for (var idx = 0; idx < self.children.length; idx++)
+                    {
+                        Radio('deregisterEntity').broadcast('all', self.children[idx]);
+                        delete self.children[idx];
+                    }
+                    delete self.children;
                 }
         });
         return Scene;

@@ -52,3 +52,17 @@ define(
 		return Asteroid;
 	}
 );
+
+var a = {
+	b: function foo()
+	{
+		console.log(foo);
+	},
+	c: function bar()
+	{
+		console.log(foo);
+	}
+};
+
+a.b();
+a.c();

@@ -10,6 +10,7 @@ define(
             init: function(width, height, graphic)
                 {
                     var self = this;
+                    self._components = [];
                     self.width = width;
                     self.height = height;
                     self._halfWidth = width / 2;
@@ -30,6 +31,13 @@ define(
                         self.graphic.width = width;
                         self.graphic.height = height;
                     }
+                },
+            addComponent: function(component)
+                {
+                    var self = this;
+                    self._components.push(
+                        component.call(self.prototype, [].slice.call(arguments, 1))
+                    );
                 },
             render: function(target)
                 {

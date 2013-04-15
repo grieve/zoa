@@ -1,9 +1,11 @@
 define(
 	[
-		'zoa/Entity'
+		'zoa/Entity',
+		'zoa/components/Base'
 	],
 	function(
-		Entity
+		Entity,
+		TestComponent
 	)
 	{
 		var Spaceship = Entity.derive({
@@ -13,6 +15,7 @@ define(
 				override.super.call(self, 32, 32, 'assets/gfx/ship.png');
 				self.x = x;
 				self.y = y;
+				self.addComponent(TestComponent, 1, 2);
 			},
 			update: function(elapsed)
 			{
