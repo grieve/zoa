@@ -23,6 +23,7 @@ define(
                     }
                 },
             requiredProperties: [
+                'graphic'
             ]
         });
 

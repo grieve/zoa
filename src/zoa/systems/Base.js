@@ -10,6 +10,7 @@ define(
             init: function()
                 {
                     var self = this;
+                    self.entities = [];
                 },
             add: function(entity)
                 {
