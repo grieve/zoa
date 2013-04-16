@@ -46,6 +46,8 @@ define(
             addEntity: function(system, entity)
                 {
                     var self = this;
+                    if(system === null)
+                        return;
                     if (self.systems.hasOwnProperty(system))
                     {
                         self.systems[system].add(entity);
