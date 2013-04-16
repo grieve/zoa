@@ -3,13 +3,15 @@ define(
         'underscore',
         'radio',
         'zoa/Class',
-        'zoa/systems/Render'
+        'zoa/systems/Render',
+        'zoa/systems/BasicPhysics'
     ],
     function(
         _,
         Radio,
         Class,
-        RenderSystem
+        RenderSystem,
+        BasicPhysicsSystem
     )
     {
         var requestAnimationFrame = window.requestAnimationFrame ||
@@ -36,7 +38,8 @@ define(
                     self.config = _.extend(self.config, options);
                     self.build();
                     self.systems = {
-                        render: new RenderSystem(self.buffer)
+                        render: new RenderSystem(self.buffer),
+                        physics: new BasicPhysicsSystem()
                     };
                     Radio('registerEntity').subscribe([self.addEntity, self]);
                 },
@@ -49,7 +52,7 @@ define(
                     }
                     else
                     {
-                        throw "Tried to register entity to unknown system: " + system;
+                        console.log("WARNING: Tried to register entity to unknown system: " + system);
                     }
                 },
             build: function()
@@ -74,10 +77,7 @@ define(
             update: function(elapsed)
                 {
                     var self = this;
-                    if (self.activeScene)
-                    {
-                        self.activeScene.update(elapsed);
-                    }
+                    self.systems.physics.update(elapsed);
                 },
             render: function()
                 {

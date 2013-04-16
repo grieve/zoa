@@ -1,9 +1,15 @@
 define(
 	[
-		'zoa/Entity'
+		'zoa/Entity',
+		'zoa/components/Geometry',
+		'zoa/components/Movement',
+		'zoa/components/Drawing'
 	],
 	function(
-		Entity
+		Entity,
+		GeometryComponent,
+		MovementComponent,
+		DrawingComponent
 	)
 	{
 		var Asteroid = Entity.derive({
@@ -11,9 +17,10 @@ define(
 				{
 					var self = this;
 					self.size = s / 2;
-					override.super.call(self, s*1.2, s*1.2);
-					self.x = x;
-					self.y = y;
+					override.super.call(self);
+					self.addComponent(GeometryComponent, s*1.2, s*1.2, x, y);
+					self.addComponent(MovementComponent);
+					self.addComponent(DrawingComponent);
 					self.generateShape();
 					self.angularVelocity = (Math.random() - 0.5) * 5;
 					self.velocity = [
@@ -52,17 +59,3 @@ define(
 		return Asteroid;
 	}
 );
-
-var a = {
-	b: function foo()
-	{
-		console.log(foo);
-	},
-	c: function bar()
-	{
-		console.log(foo);
-	}
-};
-
-a.b();
-a.c();

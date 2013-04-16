@@ -14,22 +14,6 @@ define(
                     var self = this;
                     self.children = [];
                 },
-            update: function(elapsed)
-                {
-                    var self = this;
-                    for (var idx = 0; idx < self.children.length; idx++)
-                    {
-                        self.children[idx].update(elapsed);
-                    }
-                },
-            render: function(target)
-                {
-                    var self = this;
-                    for (var idx = 0; idx < self.children.length; idx++)
-                    {
-                        self.children[idx].render(target);
-                    }
-                },
             add: function(child)
                 {
                     var self = this;

@@ -1,76 +1,32 @@
 define(
     [
+        'radio',
         'zoa/Class'
     ],
     function(
+        Radio,
         Class
     )
     {
         var Entity = Class.derive({
-            init: function(width, height, graphic)
+            init: function()
                 {
                     var self = this;
                     self._components = [];
-                    self.width = width;
-                    self.height = height;
-                    self._halfWidth = width / 2;
-                    self._halfHeight = height / 2;
-                    self.x = 0;
-                    self.y = 0;
-                    self.angularVelocity = 0;
-                    self.velocity = [0, 0];
-                    self.rotation = 0;
-                    if (graphic)
-                    {
-                        self.graphic = new Image();
-                        self.graphic.src = graphic;
-                    }
-                    else
-                    {
-                        self.graphic = document.createElement('canvas');
-                        self.graphic.width = width;
-                        self.graphic.height = height;
-                    }
                 },
             addComponent: function(component)
                 {
                     var self = this;
-                    self._components.push(
-                        component.call(self.prototype, [].slice.call(arguments, 1))
-                    );
-                },
-            render: function(target)
-                {
-                    var self = this;
-                    target.save();
-                    target.translate(self._halfWidth, self._halfHeight);
-                    target.translate(self.x, self.y);
-                    target.rotate(self.rotation);
-                    target.drawImage(
-                        self.graphic,
-                        0,
-                        0,
-                        self.width,
-                        self.height,
-                        -self._halfWidth,
-                        -self._halfHeight,
-                        self.width,
-                        self.height
-                    );
-                    target.restore();
-                },
-            update: function(elapsed)
-                {
-                    if (elapsed > 10000)
+                    self._components[component.prototype.__identifier__] = component.prototype;
+                    for (var property in component.prototype)
                     {
-                        //something seriously wrong skip
-                        return;
+                        if (property.indexOf('__') !== 0)
+                        {
+                            self[property] = component.prototype[property];
+                        }
                     }
-                    var self = this;
-                    var seconds = elapsed / 1000;
-                    self.rotation += seconds * self.angularVelocity;
-                    self.x += self.velocity[0] * seconds;
-                    self.y += self.velocity[1] * seconds;
+                    component.prototype.__init__.apply(self, [].slice.call(arguments, 1));
+                    Radio('registerEntity').broadcast(component.prototype.__system__, self);
                 }
         });
         return Entity;

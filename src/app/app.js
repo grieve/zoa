@@ -37,9 +37,17 @@ define(
                         self.activeScene = new Scene();
                         var ship = new Spaceship(400 - 16, 300 - 16);
                         self.activeScene.add(ship);
-                        var asteroid = new Asteroid(100, 200, 200);
-                        self.activeScene.add(asteroid);
+                        for (var i = 0; i < 3000; i ++)
+                        {
+                            var asteroid = new Asteroid(
+                                80,
+                                Math.random() * 800,
+                                Math.random() * 600
+                            );
+                            self.activeScene.add(asteroid);
+                        }
                         self.start();
+
                     }
                 }
         });
