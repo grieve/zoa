@@ -28,21 +28,21 @@ define(
                         ]
                     );
                 },
-            onPreloadStateChange: function(state, percentage)
+            onPreloadStateChange: function(complete, percentage)
                 {
                     var self = this;
-                    console.log("loading... " + percentage + "%");
-                    if (state)
+                    console.log("(pre)loading... " + percentage + "%");
+                    if (complete)
                     {
                         self.activeScene = new Scene();
                         var ship = new Spaceship(400 - 16, 300 - 16);
                         self.activeScene.add(ship);
-                        for (var i = 0; i < 3000; i ++)
+                        for (var i = 0; i < 1500; i ++)
                         {
                             var asteroid = new Asteroid(
                                 80,
-                                Math.random() * 800,
-                                Math.random() * 600
+                                Math.random() * 800 - 40,
+                                Math.random() * 600 - 40
                             );
                             self.activeScene.add(asteroid);
                         }
