@@ -7,8 +7,9 @@ define(
     )
     {
         var DrawingComponent = RenderComponent.derive({
-            __identifier__: 'drawing',
-            __system__: 'render',
+            __meta__: {
+                    identifier: 'DrawingComponent'
+                },
             __init__: function override(imgURL)
                 {
                     var self = this;

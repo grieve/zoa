@@ -7,8 +7,9 @@ define(
     )
     {
         var StaticGraphicComponent = RenderComponent.derive({
-            __identifier__: 'staticGraphic',
-            __system__: 'render',
+            __meta__: {
+                    identifier: 'StaticGraphicComponent'
+                },
             __init__: function override(imgURL)
                 {
                     var self = this;

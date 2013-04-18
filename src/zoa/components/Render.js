@@ -7,8 +7,12 @@ define(
     )
     {
         var RenderComponent = BaseComponent.derive({
-            __identifier__: 'render',
-            __system__: 'render',
+            __meta__: {
+                    identifier: 'RenderComponent',
+                    system: 'render',
+                    intents: ['isRenderable'],
+                    requiredIntents: ['hasGeometry']
+                },
             __init__: function(imgURL)
                 {
                     var self = this;

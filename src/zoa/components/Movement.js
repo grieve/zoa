@@ -7,28 +7,31 @@ define(
     )
     {
         var MovementComponent = BaseComponent.derive({
-            __identifier__: 'movement',
-            __system__: 'physics',
+            __meta__: {
+                    identifier: 'MovementComponent',
+                    system: 'physics',
+                    intents: ['hasPhysics'],
+                    requiredIntents: ['hasGeometry']
+                },
             __init__: function(imgURL)
                 {
                     var self = this;
                     self.graphic = null;
-                    if (!self.hasOwnProperty('x') ||
-                        !self.hasOwnProperty('y') ||
-                        !self.hasOwnProperty('rotation')
-                    )
-                    {
-                        throw "'Movement' components require preexisting 'Geometry' component";
-                    }
+                    self.acceleration = [0, 0];
+                    self.linearDamping = 1;
                     self.velocity = [0, 0];
                     self.angularVelocity = 0;
                 },
             physicsUpdate: function(elapsed)
                 {
                     var self = this;
-                    self.rotation += elapsed * self.angularVelocity;
+                    self.velocity[0] += self.acceleration[0];
+                    self.velocity[1] += self.acceleration[1];
                     self.x += self.velocity[0] * elapsed;
                     self.y += self.velocity[1] * elapsed;
+                    self.rotation += elapsed * self.angularVelocity;
+                    self.velocity[0] *= self.linearDamping;
+                    self.velocity[1] *= self.linearDamping;
                 }
         });
 

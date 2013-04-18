@@ -7,8 +7,12 @@ define(
     )
     {
         var GeometryComponent = BaseComponent.derive({
-            __identifier__: 'geometry',
-            __system__: null,
+            __meta__: {
+                    identifier: 'GeometryComponent',
+                    system: null,
+                    intents: ['hasGeometry'],
+                    requiredIntents: []
+                },
             __init__: function(w, h, x, y)
                 {
                     var self = this;
