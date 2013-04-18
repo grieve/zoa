@@ -18,9 +18,9 @@ define(
 					var self = this;
 					self.size = s / 2;
 					override.super.call(self);
-					self.addComponent(GeometryComponent, s*1.2, s*1.2, x, y);
-					self.addComponent(MovementComponent);
-					self.addComponent(DrawingComponent);
+					GeometryComponent.addTo(self, s*1.2, s*1.2, x, y);
+					MovementComponent.addTo(self);
+					DrawingComponent.addTo(self);
 					self.generateShape();
 					self.angularVelocity = (Math.random() - 0.5) * 5;
 					self.velocity = [

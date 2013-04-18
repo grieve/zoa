@@ -15,8 +15,8 @@ define(
 				{
 					var self = this;
 					override.super.call(self);
-					self.addComponent(GeometryComponent, 32, 32, x, y);
-					self.addComponent(StaticGraphicComponent, 'assets/gfx/ship.png');
+					GeometryComponent.addTo(self, 32, 32, x, y);
+					StaticGraphicComponent.addTo(self, 'assets/gfx/ship.png');
 				},
 			update: function(elapsed)
 				{
