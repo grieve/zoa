@@ -16,7 +16,6 @@ define(
             __init__: function(imgURL)
                 {
                     var self = this;
-                    self.graphic = null;
                     self.acceleration = [0, 0];
                     self.linearDamping = 1;
                     self.velocity = [0, 0];
@@ -25,8 +24,8 @@ define(
             physicsUpdate: function(elapsed)
                 {
                     var self = this;
-                    self.velocity[0] += self.acceleration[0];
-                    self.velocity[1] += self.acceleration[1];
+                    self.velocity[0] += self.acceleration[0] * elapsed;
+                    self.velocity[1] += self.acceleration[1] * elapsed;
                     self.x += self.velocity[0] * elapsed;
                     self.y += self.velocity[1] * elapsed;
                     self.rotation += elapsed * self.angularVelocity;

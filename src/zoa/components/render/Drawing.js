@@ -1,6 +1,6 @@
 define(
     [
-        'zoa/components/Render'
+        'zoa/components/render/Base'
     ],
     function(
         RenderComponent

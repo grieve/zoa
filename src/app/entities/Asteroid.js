@@ -1,9 +1,9 @@
 define(
 	[
 		'zoa/Entity',
-		'zoa/components/Geometry',
-		'zoa/components/Movement',
-		'zoa/components/Drawing'
+		'zoa/components/basic/Geometry',
+		'zoa/components/physics/Movement',
+		'zoa/components/render/Drawing'
 	],
 	function(
 		Entity,

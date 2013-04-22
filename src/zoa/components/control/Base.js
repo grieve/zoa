@@ -6,22 +6,22 @@ define(
         BaseComponent
     )
     {
-        var RenderComponent = BaseComponent.derive({
+        var ControlComponent = BaseComponent.derive({
             __meta__: {
-                    identifier: 'WASDMovement',
+                    identifier: 'ControlComponent',
+                    system: 'input',
                     intents: ['isControlled'],
-                    requiredIntents: ['hasPhysics']
+                    requiredIntents: []
                 },
-            __init__: function(imgURL)
+            __init__: function(w, h, x, y)
                 {
                     var self = this;
-                    self.graphic = null;
                 },
-            update: function(target)
+            input: function(keymap)
                 {
                 }
         });
 
-        return RenderComponent;
+        return ControlComponent;
     }
 );

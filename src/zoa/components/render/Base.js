@@ -17,13 +17,6 @@ define(
                 {
                     var self = this;
                     self.graphic = null;
-                    if (!self.hasOwnProperty('x') ||
-                        !self.hasOwnProperty('y') ||
-                        !self.hasOwnProperty('rotation')
-                    )
-                    {
-                        throw "'Render' components require preexisting 'Geometry' component";
-                    }
                 },
             render: function(target)
                 {

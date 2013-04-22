@@ -4,14 +4,16 @@ define(
         'radio',
         'zoa/Class',
         'zoa/systems/Render',
-        'zoa/systems/BasicPhysics'
+        'zoa/systems/BasicPhysics',
+        'zoa/systems/Input'
     ],
     function(
         _,
         Radio,
         Class,
         RenderSystem,
-        BasicPhysicsSystem
+        BasicPhysicsSystem,
+        InputSystem
     )
     {
         var requestAnimationFrame = window.requestAnimationFrame ||
@@ -39,7 +41,8 @@ define(
                     self.build();
                     self.systems = {
                         render: new RenderSystem(self.buffer),
-                        physics: new BasicPhysicsSystem()
+                        physics: new BasicPhysicsSystem(),
+                        input: new InputSystem(document)
                     };
                     Radio('registerEntity').subscribe([self.addEntity, self]);
                 },
@@ -79,6 +82,7 @@ define(
             update: function(elapsed)
                 {
                     var self = this;
+                    self.systems.input.update();
                     self.systems.physics.update(elapsed);
                 },
             render: function()

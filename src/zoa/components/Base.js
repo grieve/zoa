@@ -18,7 +18,7 @@ define(
             {
                 if (arguments[0] !== BaseComponent)
                 {
-                    this.init.apply(this, arguments);
+                    this.__init__.apply(this, arguments);
                 }
             };
 
