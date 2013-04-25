@@ -24,7 +24,10 @@ define(
                     var idx;
                     for (idx = 0; idx < self.entities.length; idx++)
                     {
-                        self.entities[idx].physicsUpdate(seconds);
+                        for (var j = 0; j < self.entities[idx]._components.physics.length; j++)
+                        {
+                            self.entities[idx]._components.physics[j].call(self.entities[idx], seconds);
+                        }
                     }
                 },
             requiredProperties: [

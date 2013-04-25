@@ -3,16 +3,19 @@ define(
 		'zoa/Entity',
 		'zoa/components/basic/Geometry',
 		'zoa/components/physics/Movement',
-		'zoa/components/render/Drawing'
+		'zoa/components/render/Drawing',
+		'zoa/components/basic/WrappedBoundary'
 	],
 	function(
 		Entity,
 		GeometryComponent,
 		MovementComponent,
-		DrawingComponent
+		DrawingComponent,
+		WrappedBoundary
 	)
 	{
 		var Asteroid = Entity.derive({
+			identifier: "Asteroid",
 			init: function override(s, x, y)
 				{
 					var self = this;
@@ -21,6 +24,7 @@ define(
 					GeometryComponent.addTo(self, s*1.2, s*1.2, x, y);
 					MovementComponent.addTo(self);
 					DrawingComponent.addTo(self);
+					WrappedBoundary.addTo(self, 0, 0, 800, 600);
 					self.generateShape();
 					self.angularVelocity = (Math.random() - 0.5) * 5;
 					self.velocity = [

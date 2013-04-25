@@ -14,9 +14,9 @@ define(
             __init__: function()
                 {
                     var self = this;
-                    self.speed = 500;
+                    self.speed = 300;
                 },
-            input: function(keymap)
+            __update__: function(keymap)
                 {
                     var self = this;
                     self.acceleration = [0, 0];

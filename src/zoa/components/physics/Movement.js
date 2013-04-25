@@ -21,7 +21,7 @@ define(
                     self.velocity = [0, 0];
                     self.angularVelocity = 0;
                 },
-            physicsUpdate: function(elapsed)
+            __update__: function(elapsed)
                 {
                     var self = this;
                     self.velocity[0] += self.acceleration[0] * elapsed;

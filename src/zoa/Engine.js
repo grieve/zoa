@@ -42,7 +42,7 @@ define(
                     self.systems = {
                         render: new RenderSystem(self.buffer),
                         physics: new BasicPhysicsSystem(),
-                        input: new InputSystem(document)
+                        input: new InputSystem(self.canvas)
                     };
                     Radio('registerEntity').subscribe([self.addEntity, self]);
                 },

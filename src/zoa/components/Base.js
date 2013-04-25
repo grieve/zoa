@@ -80,6 +80,11 @@ define(
                 target._intents[component.__meta__.intents[idx]] = component.__meta__.identifier;
             }
 
+            if (!target._components.hasOwnProperty(component.__meta__.system))
+            {
+                target._components[component.__meta__.system] = [];
+            }
+            target._components[component.__meta__.system].push(component.__update__);
             component.__init__.apply(target, [].slice.call(arguments, 1));
             Radio('registerEntity').broadcast(component.__meta__.system, target);
         };

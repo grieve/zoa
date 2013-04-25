@@ -9,6 +9,7 @@ define(
     )
     {
         var Entity = Class.derive({
+            identifier: "Anonymous Entity",
             init: function()
                 {
                     var self = this;

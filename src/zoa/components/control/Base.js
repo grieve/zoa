@@ -17,7 +17,7 @@ define(
                 {
                     var self = this;
                 },
-            input: function(keymap)
+            __update__: function(keymap)
                 {
                 }
         });

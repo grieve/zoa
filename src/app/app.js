@@ -37,7 +37,7 @@ define(
                         self.activeScene = new Scene();
                         var ship = new Spaceship(400 - 16, 300 - 16);
                         self.activeScene.add(ship);
-                        for (var i = 0; i < 50; i ++)
+                        for (var i = 0; i < 10; i ++)
                         {
                             var asteroid = new Asteroid(
                                 80,

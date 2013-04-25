@@ -18,28 +18,24 @@ define(
                     var self = this;
                     self._boundaries = [minX, minY, maxX, maxY];
                 },
-            physicsUpdate: function()
+            __update__: function()
                 {
                     var self = this;
-                    if (self.x < self._boundaries[0])
+                    if (self.x < self._boundaries[0] - self.width)
                     {
-                        console.log("under X");
                         self.x = self._boundaries[2];
                     }
                     if (self.x > self._boundaries[2])
                     {
-                        console.log("over X");
-                        self.x = self._boundaries[0];
+                        self.x = self._boundaries[0] - self.width;
                     }
-                    if (self.y < self._boundaries[1])
+                    if (self.y < self._boundaries[1] - self.height)
                     {
-                        console.log("under Y");
                         self.y = self._boundaries[3];
                     }
                     if (self.y > self._boundaries[3])
                     {
-                        console.log("over Y");
-                        self.y = self._boundaries[1];
+                        self.y = self._boundaries[1] - self.height;
                     }
                 }
         });
