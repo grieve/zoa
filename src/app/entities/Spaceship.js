@@ -4,7 +4,7 @@ define(
 		'zoa/components/basic/Geometry',
 		'zoa/components/physics/Movement',
 		'zoa/components/render/StaticGraphic',
-		'zoa/components/control/WASDMovement',
+		'zoa/components/control/WASDRelativeMovement',
 		'zoa/components/control/LookAtMouse',
 		'zoa/components/basic/WrappedBoundary'
 	],
@@ -30,6 +30,7 @@ define(
 					WASDMovement.addTo(self);
 					LookAtMouse.addTo(self);
 					WrappedBoundary.addTo(self, 0, 0, 800, 600);
+					self.linearDamping = 0.96;
 				},
 			update: function(elapsed)
 				{
