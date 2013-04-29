@@ -8,7 +8,7 @@ define(
     {
         var WASDMovement = ControlComponent.derive({
             __meta__: {
-                    identifier: 'WASDMovement',
+                    identifier: 'WASDAbsoluteMovement',
                     requiredIntents: ['hasPhysics']
                 },
             __init__: function()
