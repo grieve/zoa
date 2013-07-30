@@ -19,10 +19,10 @@ define(
         var App = Engine.derive({
             init: function override()
                 {
-                    var self = this;
-                    override.super.call(self, 800, 600);
-                    Radio('preloaderStateChanged').subscribe([self.onPreloadStateChange, self]);
-                    self.preload(
+                    var me = this;
+                    override.super.call(me, 800, 600);
+                    Radio('preloaderStateChanged').subscribe([me.onPreloadStateChange, me]);
+                    me.preload(
                         [
                             'assets/gfx/test_ship.png'
                         ]
@@ -30,13 +30,13 @@ define(
                 },
             onPreloadStateChange: function(complete, percentage)
                 {
-                    var self = this;
+                    var me = this;
                     console.log("(pre)loading... " + percentage + "%");
                     if (complete)
                     {
-                        self.activeScene = new Scene();
+                        me.activeScene = new Scene();
                         var ship = new Spaceship(400 - 16, 300 - 16);
-                        self.activeScene.add(ship);
+                        me.activeScene.add(ship);
                         for (var i = 0; i < 10; i ++)
                         {
                             var asteroid = new Asteroid(
@@ -44,9 +44,9 @@ define(
                                 Math.random() * 800 - 40,
                                 Math.random() * 600 - 40
                             );
-                            self.activeScene.add(asteroid);
+                            me.activeScene.add(asteroid);
                         }
-                        self.start();
+                        me.start();
 
                     }
                 }

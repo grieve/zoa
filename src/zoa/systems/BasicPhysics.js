@@ -9,8 +9,8 @@ define(
         var PhysicsSystem = BaseSystem.derive({
             init: function override(target)
                 {
-                    var self = this;
-                    override.super.call(self);
+                    var me = this;
+                    override.super.call(me);
                 },
             update: function(elapsed)
                 {
@@ -19,14 +19,14 @@ define(
                         console.log("something seriously wrong skip, pick it up next step");
                         return;
                     }
-                    var self = this;
+                    var me = this;
                     var seconds = elapsed / 1000;
                     var idx;
-                    for (idx = 0; idx < self.entities.length; idx++)
+                    for (idx = 0; idx < me.entities.length; idx++)
                     {
-                        for (var j = 0; j < self.entities[idx]._components.physics.length; j++)
+                        for (var j = 0; j < me.entities[idx]._components.physics.length; j++)
                         {
-                            self.entities[idx]._components.physics[j].call(self.entities[idx], seconds);
+                            me.entities[idx]._components.physics[j].call(me.entities[idx], seconds);
                         }
                     }
                 },

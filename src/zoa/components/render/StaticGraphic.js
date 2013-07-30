@@ -12,10 +12,10 @@ define(
                 },
             __init__: function override(imgURL)
                 {
-                    var self = this;
-                    override.super.call(self);
-                    self.graphic = new Image();
-                    self.graphic.src = imgURL;
+                    var me = this;
+                    override.super.call(me);
+                    me.graphic = new Image();
+                    me.graphic.src = imgURL;
                 }
         });
 

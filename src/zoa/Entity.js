@@ -12,9 +12,9 @@ define(
             identifier: "Anonymous Entity",
             init: function()
                 {
-                    var self = this;
-                    self._components = {};
-                    self._intents = {};
+                    var me = this;
+                    me._components = {};
+                    me._intents = {};
                 }
         });
         return Entity;

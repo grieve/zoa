@@ -4,7 +4,7 @@ define(
 		'zoa/components/basic/Geometry',
 		'zoa/components/physics/Movement',
 		'zoa/components/render/StaticGraphic',
-		'zoa/components/control/WASDRelativeMovement',
+		'zoa/components/control/WASDAbsoluteMovement',
 		'zoa/components/control/LookAtMouse',
 		'zoa/components/basic/WrappedBoundary'
 	],
@@ -22,20 +22,20 @@ define(
 			identifier: "Spaceship",
 			init: function override(x, y)
 				{
-					var self = this;
-					override.super.call(self);
-					GeometryComponent.addTo(self, 32, 32, x, y);
-					MovementComponent.addTo(self);
-					StaticGraphicComponent.addTo(self, 'assets/gfx/ship.png');
-					WASDMovement.addTo(self);
-					LookAtMouse.addTo(self);
-					WrappedBoundary.addTo(self, 0, 0, 800, 600);
-					self.linearDamping = 0.96;
+					var me = this;
+					override.super.call(me);
+					GeometryComponent.addTo(me, 32, 32, x, y);
+					MovementComponent.addTo(me);
+					StaticGraphicComponent.addTo(me, 'assets/gfx/ship.png');
+					WASDMovement.addTo(me);
+					LookAtMouse.addTo(me);
+					WrappedBoundary.addTo(me, 0, 0, 800, 600);
+					me.linearDamping = 0.96;
 				},
 			update: function(elapsed)
 				{
-					var self = this;
-					console.log(self.velocity);
+					var me = this;
+					console.log(me.velocity);
 				}
 		});
 		return Spaceship;

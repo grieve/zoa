@@ -15,7 +15,7 @@ define(
                 },
             __init__: function(w, h, x, y)
                 {
-                    var self = this;
+                    var me = this;
                 },
             __update__: function(keymap)
                 {

@@ -9,28 +9,28 @@ define(
         var BaseSystem = Class.derive({
             init: function()
                 {
-                    var self = this;
-                    self.entities = [];
+                    var me = this;
+                    me.entities = [];
                 },
             add: function(entity)
                 {
-                    var self = this;
+                    var me = this;
                     var idx = 0;
-                    for (idx = 0; idx < self.entities.length; idx++)
+                    for (idx = 0; idx < me.entities.length; idx++)
                     {
-                        if (entity == self.entities[idx])
+                        if (entity == me.entities[idx])
                         {
                             return;
                         }
                     }
-                    for (idx = 0; idx < self.requiredProperties.length; idx++)
+                    for (idx = 0; idx < me.requiredProperties.length; idx++)
                     {
-                        var prop = self.requiredProperties[idx];
+                        var prop = me.requiredProperties[idx];
                         if (!entity.hasOwnProperty(prop))
                         {
-                            if (self.defaultProperties.hasOwnProperty(prop))
+                            if (me.defaultProperties.hasOwnProperty(prop))
                             {
-                                entity[prop] = self.defaultProperties[prop];
+                                entity[prop] = me.defaultProperties[prop];
                             }
                             else
                             {
@@ -38,24 +38,24 @@ define(
                             }
                         }
                     }
-                    self.entities.push(entity);
+                    me.entities.push(entity);
                 },
             remove: function(entity)
                 {
-                    var self = this;
+                    var me = this;
                     var idx = 0;
-                    for (idx = 0; idx < self.entities.length; idx++)
+                    for (idx = 0; idx < me.entities.length; idx++)
                     {
-                        if (entity == self.entities[idx])
+                        if (entity == me.entities[idx])
                         {
                             break;
                         }
                     }
-                    delete self.entities[idx];
+                    delete me.entities[idx];
                 },
             update: function(elapsed)
                 {
-                    var self = this;
+                    var me = this;
                 },
             entities: [],
             requiredProperties: [],

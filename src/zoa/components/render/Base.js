@@ -15,33 +15,33 @@ define(
                 },
             __init__: function(imgURL)
                 {
-                    var self = this;
-                    self.graphic = null;
+                    var me = this;
+                    me.graphic = null;
                 },
             render: function(target)
                 {
-                    var self = this;
-                    if (self.x + self.width < 0 ||
-                        self.y + self.height < 0 ||
-                        self.x > 800 ||
-                        self.y > 600)
+                    var me = this;
+                    if (me.x + me.width < 0 ||
+                        me.y + me.height < 0 ||
+                        me.x > 800 ||
+                        me.y > 600)
                     {
                         return;
                     }
                     target.save();
-                    target.translate(self.halfWidth, self.halfHeight);
-                    target.translate(self.x, self.y);
-                    target.rotate(self.rotation);
+                    target.translate(me.halfWidth, me.halfHeight);
+                    target.translate(me.x, me.y);
+                    target.rotate(me.rotation);
                     target.drawImage(
-                        self.graphic,
+                        me.graphic,
                         0,
                         0,
-                        self.width,
-                        self.height,
-                        -self.halfWidth,
-                        -self.halfHeight,
-                        self.width,
-                        self.height
+                        me.width,
+                        me.height,
+                        -me.halfWidth,
+                        -me.halfHeight,
+                        me.width,
+                        me.height
                     );
                     target.restore();
                 }

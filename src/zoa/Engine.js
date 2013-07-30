@@ -36,24 +36,24 @@ define(
                 },
             init: function(options)
                 {
-                    var self = this;
-                    self.config = _.extend(self.config, options);
-                    self.build();
-                    self.systems = {
-                        render: new RenderSystem(self.buffer),
+                    var me = this;
+                    me.config = _.extend(me.config, options);
+                    me.build();
+                    me.systems = {
+                        render: new RenderSystem(me.buffer),
                         physics: new BasicPhysicsSystem(),
-                        input: new InputSystem(self.canvas)
+                        input: new InputSystem(me.canvas)
                     };
-                    Radio('registerEntity').subscribe([self.addEntity, self]);
+                    Radio('registerEntity').subscribe([me.addEntity, me]);
                 },
             addEntity: function(system, entity)
                 {
-                    var self = this;
+                    var me = this;
                     if(system === null)
                         return;
-                    if (self.systems.hasOwnProperty(system))
+                    if (me.systems.hasOwnProperty(system))
                     {
-                        self.systems[system].add(entity);
+                        me.systems[system].add(entity);
                     }
                     else
                     {
@@ -62,46 +62,46 @@ define(
                 },
             build: function()
                 {
-                    var self = this;
-                    document.body.style.backgroundColor = self.config.backgroundColor;
-                    self.container = document.createElement('div');
-                    self.container.style.width = self.config.width + "px";
-                    self.container.style.height = self.config.height + "px";
-                    for (var prop in self.config.style)
+                    var me = this;
+                    document.body.style.backgroundColor = me.config.backgroundColor;
+                    me.container = document.createElement('div');
+                    me.container.style.width = me.config.width + "px";
+                    me.container.style.height = me.config.height + "px";
+                    for (var prop in me.config.style)
                     {
-                        self.container.style[prop] = self.config.style[prop];
+                        me.container.style[prop] = me.config.style[prop];
                     }
-                    self.canvas = document.createElement('canvas');
-                    self.bufferCanvas = document.createElement('canvas');
-                    self.buffer = self.bufferCanvas.getContext('2d');
-                    self.canvas.width = self.bufferCanvas.width = self.config.width;
-                    self.canvas.height = self.bufferCanvas.height = self.config.height;
-                    self.container.appendChild(self.canvas);
-                    document.body.appendChild(self.container);
+                    me.canvas = document.createElement('canvas');
+                    me.bufferCanvas = document.createElement('canvas');
+                    me.buffer = me.bufferCanvas.getContext('2d');
+                    me.canvas.width = me.bufferCanvas.width = me.config.width;
+                    me.canvas.height = me.bufferCanvas.height = me.config.height;
+                    me.container.appendChild(me.canvas);
+                    document.body.appendChild(me.container);
                 },
             update: function(elapsed)
                 {
-                    var self = this;
-                    self.systems.input.update();
-                    self.systems.physics.update(elapsed);
+                    var me = this;
+                    me.systems.input.update();
+                    me.systems.physics.update(elapsed);
                 },
             render: function()
                 {
-                    var self = this;
-                    self.buffer.fillStyle = self.config.clearColor;
-                    self.buffer.fillRect(0, 0, self.config.width, self.config.height);
-                    self.systems.render.update();
-                    if(self.config.calcFPS && self.config.showFPS)
+                    var me = this;
+                    me.buffer.fillStyle = me.config.clearColor;
+                    me.buffer.fillRect(0, 0, me.config.width, me.config.height);
+                    me.systems.render.update();
+                    if(me.config.calcFPS && me.config.showFPS)
                     {
-                        self.buffer.fillStyle = "#FFFFFF";
-                        self.buffer.fillText("FPS: " + self.fps.toFixed(2), 10, 20);
+                        me.buffer.fillStyle = "#FFFFFF";
+                        me.buffer.fillText("FPS: " + me.fps.toFixed(2), 10, 20);
                     }
-                    self.flip();
+                    me.flip();
                 },
             flip: function()
                 {
-                    var self = this;
-                    self.canvas.getContext('2d').drawImage(self.buffer.canvas, 0, 0);
+                    var me = this;
+                    me.canvas.getContext('2d').drawImage(me.buffer.canvas, 0, 0);
                 },
             preload: function(assets)
                 {
@@ -130,22 +130,22 @@ define(
                 },
             start: function()
                 {
-                    var self = this;
+                    var me = this;
                     _lastUpdate = 0;
-                    if(self.config.calcFPS)
+                    if(me.config.calcFPS)
                     {
                         _lastFps = 0;
-                        self.fps = 0;
+                        me.fps = 0;
                         _frameCount = 0;
                     }
                     var step = function(elapsed)
                     {
                         requestAnimationFrame(step);
-                        self.render();
-                        self.update(elapsed - _lastUpdate);
+                        me.render();
+                        me.update(elapsed - _lastUpdate);
                         _lastUpdate = elapsed;
 
-                        if (self.config.calcFPS)
+                        if (me.config.calcFPS)
                         {
                             _frameCount++;
                             if(_lastFps === 0)
@@ -154,7 +154,7 @@ define(
                             }
                             if (elapsed - _lastFps > 200)
                             {
-                                self.fps = (_frameCount / (elapsed - _lastFps))*1000;
+                                me.fps = (_frameCount / (elapsed - _lastFps))*1000;
                                 _lastFps = elapsed;
                                 _frameCount = 0;
                             }

@@ -11,44 +11,44 @@ define(
         var InputSystem = BaseSystem.derive({
             init: function override(target)
                 {
-                    var self = this;
-                    override.super.call(self);
-                    self.target = target;
-                    self._keymap = [];
-                    self._mouse = {
+                    var me = this;
+                    override.super.call(me);
+                    me.target = target;
+                    me._keymap = [];
+                    me._mouse = {
                         position: {
                             x: 0,
                             y: 0
                         }
                     };
-                    document.onkeydown = function(evt){self._handleKeyDown(evt);};
-                    document.onkeyup = function(evt){self._handleKeyUp(evt);};
-                    document.onkeypress = function(evt){self._handleKeyPress(evt);};
-                    target.onmousedown = function(evt){self._handleMouseDown(evt);};
-                    target.onmouseup = function(evt){self._handleMouseUp(evt);};
-                    target.onmousemove = function(evt){self._handleMouseMove(evt);};
+                    document.onkeydown = function(evt){me._handleKeyDown(evt);};
+                    document.onkeyup = function(evt){me._handleKeyUp(evt);};
+                    document.onkeypress = function(evt){me._handleKeyPress(evt);};
+                    target.onmousedown = function(evt){me._handleMouseDown(evt);};
+                    target.onmouseup = function(evt){me._handleMouseUp(evt);};
+                    target.onmousemove = function(evt){me._handleMouseMove(evt);};
                 },
             update: function()
                 {
-                    var self = this;
+                    var me = this;
                     var idx;
-                    for (idx = 0; idx < self.entities.length; idx++)
+                    for (idx = 0; idx < me.entities.length; idx++)
                     {
-                        for (var j = 0; j < self.entities[idx]._components.input.length; j++)
+                        for (var j = 0; j < me.entities[idx]._components.input.length; j++)
                         {
-                            self.entities[idx]._components.input[j].call(self.entities[idx], self._keymap, self._mouse);
+                            me.entities[idx]._components.input[j].call(me.entities[idx], me._keymap, me._mouse);
                         }
                     }
                 },
             _handleKeyUp: function(evt)
                 {
-                    var self = this;
-                    self._keymap[evt.keyCode] = false;
+                    var me = this;
+                    me._keymap[evt.keyCode] = false;
                 },
             _handleKeyDown: function(evt)
                 {
-                    var self = this;
-                    self._keymap[evt.keyCode] = true;
+                    var me = this;
+                    me._keymap[evt.keyCode] = true;
                 },
             _handleKeyPress: function(evt)
                 {
@@ -64,10 +64,10 @@ define(
                 },
             _handleMouseMove: function(evt)
                 {
-                    var self = this;
-                    self._mouse.position = {
-                        x: evt.x - self.target.getBoundingClientRect().left,
-                        y: evt.y - self.target.getBoundingClientRect().top
+                    var me = this;
+                    me._mouse.position = {
+                        x: evt.x - me.target.getBoundingClientRect().left,
+                        y: evt.y - me.target.getBoundingClientRect().top
                     };
                 },
             requiredProperties: [

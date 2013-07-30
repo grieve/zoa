@@ -9,17 +9,17 @@ define(
         var RenderSystem = BaseSystem.derive({
             init: function override(target)
                 {
-                    var self = this;
-                    override.super.call(self);
-                    self.target = target;
+                    var me = this;
+                    override.super.call(me);
+                    me.target = target;
                 },
             update: function()
                 {
-                    var self = this;
+                    var me = this;
                     var idx;
-                    for (idx = 0; idx < self.entities.length; idx++)
+                    for (idx = 0; idx < me.entities.length; idx++)
                     {
-                        self.entities[idx].render(self.target);
+                        me.entities[idx].render(me.target);
                     }
                 },
             requiredProperties: [

@@ -11,36 +11,36 @@ define(
         var Scene = Class.derive({
             init: function()
                 {
-                    var self = this;
-                    self.children = [];
+                    var me = this;
+                    me.children = [];
                 },
             add: function(child)
                 {
-                    var self = this;
-                    for (var idx = 0; idx < self.children.length; idx++)
+                    var me = this;
+                    for (var idx = 0; idx < me.children.length; idx++)
                     {
-                        if (child == self.children[idx])
+                        if (child == me.children[idx])
                             return;
                     }
-                    self.children.push(child);
+                    me.children.push(child);
                 },
             suspend: function()
                 {
-                    var self = this;
-                    for (var idx = 0; idx < self.children.length; idx++)
+                    var me = this;
+                    for (var idx = 0; idx < me.children.length; idx++)
                     {
-                        Radio('deregisterEntity').broadcast('all', self.children[idx]);
+                        Radio('deregisterEntity').broadcast('all', me.children[idx]);
                     }
                 },
             destroy: function()
                 {
-                    var self = this;
-                    for (var idx = 0; idx < self.children.length; idx++)
+                    var me = this;
+                    for (var idx = 0; idx < me.children.length; idx++)
                     {
-                        Radio('deregisterEntity').broadcast('all', self.children[idx]);
-                        delete self.children[idx];
+                        Radio('deregisterEntity').broadcast('all', me.children[idx]);
+                        delete me.children[idx];
                     }
-                    delete self.children;
+                    delete me.children;
                 }
         });
         return Scene;
