@@ -5,7 +5,8 @@ define(
         'zoa/Class',
         'zoa/systems/Render',
         'zoa/systems/BasicPhysics',
-        'zoa/systems/Input'
+        'zoa/systems/Input',
+        'zoa/utils/Timer'
     ],
     function(
         _,
@@ -13,7 +14,8 @@ define(
         Class,
         RenderSystem,
         BasicPhysicsSystem,
-        InputSystem
+        InputSystem,
+        Timer
     )
     {
         var requestAnimationFrame = window.requestAnimationFrame ||
@@ -131,7 +133,10 @@ define(
             start: function()
                 {
                     var me = this;
-                    _lastUpdate = 0;
+
+                    me.inputTimer = Timer.add(_.bind(me.systems.input.update, me.systems.input), 100, -1);
+                    me.physicsTimer = Timer.add(_.bind(me.systems.physics.update, me.systems.physics), 30, -1);
+
                     if(me.config.calcFPS)
                     {
                         _lastFps = 0;
@@ -142,9 +147,6 @@ define(
                     {
                         requestAnimationFrame(step);
                         me.render();
-                        me.update(elapsed - _lastUpdate);
-                        _lastUpdate = elapsed;
-
                         if (me.config.calcFPS)
                         {
                             _frameCount++;
@@ -160,7 +162,9 @@ define(
                             }
                         }
                     };
-                    step(_lastUpdate);
+                    step(0);
+
+                    Timer.start();
                 }
         });
         return Engine;
